@@ -1,0 +1,4 @@
+Zoe Bishop
+Major: Computer Science
+I am taking this class because it is a requirement for my major
+I believe that in this class we will learn beginning/intermediate level programming in C++
