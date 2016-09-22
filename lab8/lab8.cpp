@@ -6,13 +6,19 @@ double ToPound (double kiloValue){
     return (kiloValue * 2.2); 
 };
 
+// Scope: ToPound = global, kiloValue = local)
+
 double ToKilo (double poundValue){
     return (poundValue / 2.2);
 };
 
+// Scope: ToKilo = gloabl, poundValue = local
+
 int main(){
     double originalKilo;
     double originalPound;
+    
+    // Scope: originalKilo = local, originalPound = local
     
     cout << "Enter a value in kilograms and the program will convert it to pounds." << endl;
     cin >> originalKilo;
