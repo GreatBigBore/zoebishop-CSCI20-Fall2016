@@ -17,6 +17,7 @@ public:
     void PrintTemps() const;
     
     TemperatureConverter(); //default constructor
+    TemperatureConverter(double kelvin_); 
 private:
     double kelvin_;
 };
@@ -29,12 +30,12 @@ TemperatureConverter::TemperatureConverter(double kelvin_){
         kelvin_ = celsiusValue + 273.15;
         return;
     };
+        double TemperatureConverter::GetTempAsCelsius() const {
+        return kelvin_;
+    };
     void TemperatureConverter::SetTempFromFahrenheit(double fahrenheitValue){
         kelvin_ = 5 * (fahrenheitValue - 32) / 9 + 273.15;
         return;
-    };
-    double TemperatureConverter::GetTempAsCelsius() const {
-        return kelvin_;
     };
     double TemperatureConverter::GetTempAsFahrenheit() const {
         return kelvin_;
