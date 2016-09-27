@@ -5,8 +5,8 @@ using namespace std;
 class TemperatureConverter{
 
 public: 
-    void SetTempFromKelvin(double kelvinValue);
-    double GetTempFromKelvin() const;
+    void SetTempFromKelvin(double kelvinValue); //mutator
+    double GetTempFromKelvin() const; //accessor
     
     void SetTempFromCelsius(double celsiusValue);
     void SetTempFromFahrenheit(double fahrenheitValue);
@@ -16,12 +16,15 @@ public:
     
     void PrintTemps() const;
     
-    TemperatureConverter();
+    TemperatureConverter(); //default constructor
 private:
     double kelvin_;
 };
 
-TemperatureConverter::TemperatureConverter()
+TemperatureConverter::TemperatureConverter(double kelvin_){
+    kelvin_ = 0;
+    return;
+} //constructor overload
     void TemperatureConverter::SetTempFromCelsius(double celsiusValue){
         kelvin_ = celsiusValue + 273.15;
         return;
