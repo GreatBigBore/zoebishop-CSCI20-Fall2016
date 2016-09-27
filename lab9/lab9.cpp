@@ -26,6 +26,14 @@ TemperatureConverter::TemperatureConverter(double kelvin_){
     kelvin_ = 0;
     return;
 } //constructor overload
+
+    void TemperatureConverter::SetTempFromKelvin(double kelvinValue){
+        kelvin_ = kelvinValue;
+        return;
+    };
+    double TemperatureConverter::GetTempFromKelvin() const{
+        return kelvin_;
+    };
     void TemperatureConverter::SetTempFromCelsius(double celsiusValue){
         kelvin_ = celsiusValue + 273.15;
         return;
@@ -42,9 +50,9 @@ TemperatureConverter::TemperatureConverter(double kelvin_){
     };
     
     void TemperatureConverter::PrintTemps() const{
-        cout << GetTempFromKelvin;
-        cout << GetTempAsCelsius;
-        cout << GetTempAsFahrenheit; 
+        cout << GetTempFromKelvin();
+        cout << GetTempAsCelsius();
+        cout << GetTempAsFahrenheit(); 
         return;
     }
     
