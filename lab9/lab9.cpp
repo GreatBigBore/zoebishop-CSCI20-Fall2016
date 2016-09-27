@@ -22,6 +22,10 @@ private:
     double kelvin_;
 };
 
+TemperatureConverter::TemperatureConverter(){
+    kelvin_ = 0;
+};
+ 
 TemperatureConverter::TemperatureConverter(double kelvin_){
     kelvin_ = 0;
     return;
@@ -39,20 +43,20 @@ TemperatureConverter::TemperatureConverter(double kelvin_){
         return;
     };
         double TemperatureConverter::GetTempAsCelsius() const {
-        return kelvin_;
+        return kelvin_ - 273.15;
     };
     void TemperatureConverter::SetTempFromFahrenheit(double fahrenheitValue){
         kelvin_ = 5 * (fahrenheitValue - 32) / 9 + 273.15;
         return;
     };
     double TemperatureConverter::GetTempAsFahrenheit() const {
-        return kelvin_;
+        return kelvin_ -273.15 * (9 / 5) + 32;
     };
     
     void TemperatureConverter::PrintTemps() const{
-        cout << GetTempFromKelvin();
-        cout << GetTempAsCelsius();
-        cout << GetTempAsFahrenheit(); 
+        cout << GetTempFromKelvin() << endl;
+        cout << GetTempAsCelsius() << endl;
+        cout << GetTempAsFahrenheit() << endl; 
         return;
     }
     
