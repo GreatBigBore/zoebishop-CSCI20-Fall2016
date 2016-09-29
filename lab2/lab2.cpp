@@ -1,5 +1,5 @@
 //Guessing Game Algorithm
-
+ 
 //Computer generates number between 1-10 (save as variable numComputer)
 //Input - User enters number (save as variable numUser)  
 //If numComputer = numUser, display message "You win!" 
