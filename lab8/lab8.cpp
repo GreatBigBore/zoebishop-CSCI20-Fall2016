@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
-
+ 
 double ToPound (double kiloValue){
     return (kiloValue * 2.2); 
 };
