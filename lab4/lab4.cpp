@@ -2,7 +2,7 @@
 using namespace std; 
 
 int main () {
-    
+     
     float coinAmount = 0; 
     
     int quarterValue = 25;
