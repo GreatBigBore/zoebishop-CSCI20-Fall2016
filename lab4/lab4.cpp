@@ -12,6 +12,7 @@ int main () {
     
     float deductible = 10.9;
      
+    cout << "Please enter a coin amount." << endl; 
     cin >> coinAmount;
     cout << "You have entered " << coinAmount << " cents." << endl;
     
