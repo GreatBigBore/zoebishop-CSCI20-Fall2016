@@ -17,9 +17,8 @@ using namespace std;
     */
 int game(int userValue){
     int gameResult;
-    int compValue;
     srand(time(0));
-    srand(compValue);
+    int compValue = (rand() % 3) + 1;
     
     //If there is a tie it does not add or subtract from the user's score
     if (userValue == compValue){
@@ -64,11 +63,13 @@ int game(int userValue){
             cout << "You won this round!" << endl;
         }
     }
+    return gameResult;
 }
 
 int main(){
     int totalRounds;
     int userChoice;
+    int gameResult;
    
     cout << "Time to play Rock, Paper, Scissors." << endl; 
     cout << "To begin, please select if you would like to play 3, 5, or 7 rounds." << endl;
@@ -87,7 +88,7 @@ int main(){
     game(userChoice);
     
     //Adds two more rounds if the user chose 5 or 7 rounds
-    if(totalRounds == (5 || 7)){
+    if(totalRounds == 5 || totalRounds == 7){
         cout << endl << "Fourth round: Please select 1 for rock, 2 for paper, or 3 for scissors." << endl;
         cin >> userChoice;
         game(userChoice);
@@ -107,4 +108,6 @@ int main(){
         cin >> userChoice;
         game(userChoice);
     }
+    gameResult = game(userChoice);
+    cout << "You won " << gameResult << " games." << endl;
 }
