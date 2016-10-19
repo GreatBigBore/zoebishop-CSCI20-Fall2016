@@ -23,6 +23,8 @@ int game(int userValue){
     //If there is a tie it does not add or subtract from the user's score
     if (userValue == compValue){
         gameResult = gameResult + 0;
+        cout << "The computer picked the same one as you!" << endl;
+        cout << "It's a tie!" << endl;
     }
     //Decides if user won or lost if they choose rock
     if (userValue == 1){
