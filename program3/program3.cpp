@@ -31,7 +31,7 @@ int game(int userValue){
             cout << "Computer picked paper. You picked rock." << endl;
             cout << "You lost this round!" << endl;
         }
-        else {
+        else if (compValue == 3){
             gameResult = gameResult + 1;
             cout << "Computer picked scissors. You picked rock." << endl;
             cout << "You won this round!" << endl;
@@ -44,7 +44,7 @@ int game(int userValue){
             cout << "Computer picked rock. You picked paper." << endl;
             cout << "You won this round!" << endl;
         }
-        else {
+        else if (compValue == 3){
             gameResult = gameResult;
             cout << "Computer picked scissors. You picked paper." << endl;
             cout << "You lost this round!" << endl;
@@ -57,7 +57,7 @@ int game(int userValue){
             cout << "Computer picked rock. You picked scissors." << endl;
             cout << "You lost this round!" << endl;
         }
-        else {
+        else if (compValue == 2){
             gameResult = gameResult + 1;
             cout << "Computer picked paper. You picked scissors." << endl;
             cout << "You won this round!" << endl;
@@ -77,43 +77,36 @@ int main(){
     
     cout << endl << "First round: Please select 1 for rock, 2 for paper, or 3 for scissors." << endl;
     cin >> userChoice;
-    game(userChoice);
-    gameResult = game(userChoice);
+    gameResult = gameResult + game(userChoice);
    
     cout << endl << "Second round: Please select 1 for rock, 2 for paper, or 3 for scissors." << endl;
     cin >> userChoice;
-    game(userChoice);
-    gameResult = game(userChoice);
+    gameResult = gameResult + game(userChoice);
    
     cout << endl << "Third round: Please select 1 for rock, 2 for paper, or 3 for scissors." << endl;
     cin >> userChoice;
-    game(userChoice);
-    gameResult = game(userChoice);
+    gameResult = gameResult + game(userChoice);
     
     //Adds two more rounds if the user chose 5 or 7 rounds
     if(totalRounds == 5 || totalRounds == 7){
         cout << endl << "Fourth round: Please select 1 for rock, 2 for paper, or 3 for scissors." << endl;
         cin >> userChoice;
-        game(userChoice);
-        gameResult = game(userChoice);
+        gameResult = gameResult + game(userChoice);
        
         cout << endl << "Fifth round: Please select 1 for rock, 2 for paper, or 3 for scissors." << endl;
         cin >> userChoice;
-        game(userChoice);
-        gameResult = game(userChoice);
+        gameResult = gameResult + game(userChoice);
     }
     
     //Adds two more rounds if the user chose 7 rounds
     if(totalRounds == 7){
          cout << endl << "Sixth round: Please select 1 for rock, 2 for paper, or 3 for scissors."<< endl;
         cin >> userChoice;
-        game(userChoice);
-        gameResult = game(userChoice);
+        gameResult = gameResult + game(userChoice);
         
         cout << endl << "Seventh round: Please select 1 for rock, 2 for paper, or 3 for scissors." << endl;
         cin >> userChoice;
-        game(userChoice);
-        gameResult = game(userChoice);
+        gameResult = gameResult + game(userChoice);
     }
     
     cout << endl << "You won " << gameResult << " games." << endl;
