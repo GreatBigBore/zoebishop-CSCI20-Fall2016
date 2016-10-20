@@ -17,12 +17,13 @@ using namespace std;
     */
 int game(int userValue){
     int gameResult;
+    int ties;
     srand(time(0));
     int compValue = (rand() % 3) + 1;
     
     //If there is a tie it does not add or subtract from the user's score
     if (userValue == compValue){
-        gameResult = gameResult + 0;
+        ties = ties + 1;
         cout << "The computer picked the same one as you!" << endl;
         cout << "It's a tie!" << endl;
     }
@@ -65,7 +66,7 @@ int game(int userValue){
             cout << "You won this round!" << endl;
         }
     }
-    return gameResult;
+    return gameResult + ties;
 }
 
 int main(){
@@ -111,7 +112,7 @@ int main(){
         gameResult = gameResult + game(userChoice);
     }
     
-    cout << endl << "You won " << gameResult << " games." << endl;
+    cout << endl << "You won and tied a total of " << gameResult << " games." << endl;
     cout << "That is " << gameResult << " out of " << totalRounds << " games." << endl;
     if (gameResult >= (.5 * totalRounds)){
         cout << "You won!" << endl;
