@@ -3,19 +3,19 @@
 using namespace std;
 
 int main(){
-    string userOrder;
+    int userOrder;
     
     string menu[10];
-    menu[0] = "Cookie";
-    menu[1] = "Cake";
-    menu[2] = "Pie";
-    menu[3] = "Doughnut";
-    menu[4] = "Scone";
-    menu[5] = "Brownie";
-    menu[6] = "Cupcake";
-    menu[7] = "Fudge";
-    menu[8] = "Gelato";
-    menu[9] = "Popsicle";
+    menu[0] = " Cookie";
+    menu[1] = " Cake";
+    menu[2] = " Pie";
+    menu[3] = " Doughnut";
+    menu[4] = " Scone";
+    menu[5] = " Brownie";
+    menu[6] = " Cupcake";
+    menu[7] = " Fudge";
+    menu[8] = " Gelato";
+    menu[9] = " Popsicle";
     
     int totalOrder[10];
     totalOrder[0] = 0;
@@ -35,17 +35,17 @@ int main(){
         cout << menu[i] << endl;
     }
     
-    cout << "What would you like to order?" << endl;
+    cout << "What would you like to order? Please enter the corresponding order number." << endl;
+    cout << "When you are done ordering, enter a 0." << endl;
     cin >> userOrder;
     
-   while(userOrder != "no"){
+   while(userOrder != 0){
     cout << endl <<  "Anything else?" << endl;
     cin >> userOrder;
-    menu[i]
-    totalOrder[i] = totalOrder[i] + 1;
+    totalOrder[userOrder] = totalOrder[userOrder] + 1;
    }
    
-   for(int j = 0; int j < 10; ++j){
-       cout << totalOrder[i] << menuOrder[i] << endl;
+   for(int j = 0; j < 10; ++j){
+       cout << totalOrder[j] << menu[j] << endl;
    }
 }
