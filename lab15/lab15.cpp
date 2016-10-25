@@ -38,11 +38,12 @@ int main(){
     cout << "What would you like to order? Please enter the corresponding order number." << endl;
     cout << "When you are done ordering, enter a 0." << endl;
     cin >> userOrder;
+    totalOrder[userOrder - 1] = totalOrder[userOrder - 1] + 1;
     
    while(userOrder != 0){
     cout << endl <<  "Anything else?" << endl;
     cin >> userOrder;
-    totalOrder[userOrder] = totalOrder[userOrder] + 1;
+    totalOrder[userOrder - 1] = totalOrder[userOrder - 1] + 1;
    }
    
    for(int j = 0; j < 10; ++j){
