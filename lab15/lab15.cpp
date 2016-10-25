@@ -32,7 +32,7 @@ int main(){
      cout << "Welcome to the fat cafe! Here is our list of menu items:" << endl;
     
     for(int i = 0; i < 10; ++i){
-        cout << menu[i] << endl;
+        cout << i + 1 << "." << menu[i] << endl;
     }
     
     cout << "What would you like to order? Please enter the corresponding order number." << endl;
