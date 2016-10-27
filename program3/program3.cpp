@@ -14,50 +14,19 @@ using namespace std;
 class Game{
     public: 
         Game();
-        int play();
         string numToChoice(int choice);
-        int gameRound(int userChoice);
+        int playRound(int userChoice);
+        int getCompChoice();
+        int getRoundResult();
     private:
-        int wins;
-        int ties;
+        int compChoice;
+        int roundResult;
 };
 
 Game::Game(){
+        compChoice = 0;
+        roundResult = 0;
         srand(time(0));
-        wins = 0;
-        ties = 0;
-}
-    
-int Game::play(){
-
-    int roundResult = 0;
-
-    for (int i = 0; i < numRounds; ++i){
-        roundResult = gameRound(i);
-        if(roundResult == 0){
-            ties = ties + 1;
-        }
-        else if(roundResult == 1){
-            wins = wins + 1;
-        }
-    }
-    string sWins = "";
-    string sTies = "";
-    if(wins != 1){
-        sWins = "s";
-    }
-    if(ties != 1){
-        sTies = "s";
-    }
-    cout << "You won " << wins << " round" << sWins << " and tied " << ties << " round" << sTies << "." << endl;
-    cout << "That is " << wins + ties << " out of " << numRounds << "." << endl;
-    int totalScore = wins + ties;
-    if (totalScore >= (.5 * numRounds)){
-        cout << "You won!" << endl;
-    }
-    else if (totalScore < (.5 * numRounds)){
-        cout << "You lost!" << endl;
-    }
 }
 
 string Game::numToChoice(int choice){
@@ -73,9 +42,18 @@ string Game::numToChoice(int choice){
             break;
     }
 }
-int Game::gameRound(int userChoice){
-    int compChoice = (rand() % 3) + 1;
-    int roundResult = -2;
+
+int Game::getCompChoice(){
+    return compChoice;
+}
+
+int Game::getRoundResult(){
+    return roundResult;
+}
+
+int Game::playRound(int userChoice){
+    compChoice = (rand() % 3) + 1;
+    roundResult = -2;
     
     if (userChoice > compChoice || (userChoice == 1 && compChoice == 3)){
         roundResult = 1;
@@ -86,41 +64,64 @@ int Game::gameRound(int userChoice){
     else{
         roundResult = -1;
     }
-    cout << "You chose " << numToChoice(userChoice) << "." << endl;
-    cout << "The computer chose " << numToChoice(compChoice) << "." << endl;
-    switch(roundResult){
-        case -1: 
-            cout << "You lost!" << endl;
-            break;
-        case 0:
-            cout << "It's a tie!" << endl;
-            break;
-        case 1: 
-            cout << "You won!" << endl;
-            break;
-    }
-    cout << endl;
-    return roundResult;
 }
 
 int main(){
     int numRounds = 0;
-    int roundNumber;
-    int userChoice;
+    int userChoice = 0;
+    int compChoice = 0;
+    int roundResult = 0;
+    int ties = 0;
+    int wins = 0;
+    
+    Game userGame;
     
     cout << "Time to play Rock, Paper, Scissors!" << endl;
     cout << "First, please choose if you would like to play 3, 5, or 7 rounds." << endl;
-    cin >> roundNumber;
+    cin >> numRounds;
   
-    for(i = 0; i <= roundNumber){
-        cout << "Round " << numRounds + 1 << endl;
+    for(int i = 0; i < numRounds; ++i){
+        cout << "Round " << i + 1 << endl;
         cout << "Please enter 1 for rock, 2 for paper, and 3 for scissors." << endl;
         cin >> userChoice;
-        userGame.gameRound(userChoice);
+        userGame.playRound(userChoice);
+        cout << "You chose " << userGame.numToChoice(userChoice) << "." << endl;
+        compChoice = userGame.getCompChoice();
+        cout << "The computer chose " << userGame.numToChoice(compChoice) << "." << endl;
+        roundResult = userGame.getRoundResult();
+        
+        if(roundResult == 0){
+            ties++;
+            cout << "You tied!" << endl;
+        }
+        else if(roundResult == 1){
+            wins++;
+            cout << "You won!" << endl;
+        }
+        else{
+            cout << "You lost!" << endl;
+        }
+    } 
+    
+    string sWins = "";
+    string sTies = "";
+    if(wins != 1){
+        sWins = "s";
+    }
+    if(ties != 1){
+        sTies = "s";
     }
     
-    Game userGame;
-    userGame.play();
+    cout << "You won " << wins << " game" << sWins << " and tied " << ties << " game" << sTies << "." << endl;
+    cout << "That is " << wins + ties << " out of " << numRounds << " games." << endl;
+    
+    if ((wins+ ties) >= (.5 * numRounds)){
+        cout << "You won!" << endl;
+    }
+    else if ((wins + ties) < (.5 * numRounds)){
+        cout << "You lost!" << endl;
+    }
+
 }
 
 
