@@ -64,15 +64,18 @@ int main(){
     cout << "That will be $"<< price[userOrder - 1][0] << "." << endl;
     double totalPrice = price[userOrder - 1][0];
     cout << "There are " << price[userOrder - 1][1] - 1 << " " << menu[userOrder - 1] << " left." << endl;
-    
-   while(userOrder != 0){
-    cout << endl <<  "Anything else?" << endl;
+    cout << "Anything else?" << endl;
     cin >> userOrder;
-    if(userOrder == 0)break;
+   
+   do{
     cout << "That will be $"<< price[userOrder - 1][0] << "." << endl;
     totalPrice = totalPrice + price[userOrder - 1][0];
     cout << "There are " << price[userOrder - 1][1] - 1 << menu[userOrder - 1] << " left." << endl;
+    cout << endl <<  "Anything else?" << endl;
+    cin >> userOrder;
    }
+    while(userOrder != 0);
+    
    
    for(int j = 0; j < 10; ++j){
        cout << totalOrder[j] << menu[j] << endl;

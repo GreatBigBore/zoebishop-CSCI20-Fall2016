@@ -16,7 +16,7 @@ class Game{
         Game();
         int play();
         string numToChoice(int choice);
-        int gameRound(int roundNumber);
+        int gameRound(int userChoice);
     private:
         int wins;
         int ties;
@@ -28,7 +28,7 @@ Game::Game(){
         ties = 0;
 }
     
-int Game::play(int numRounds){
+int Game::play(){
 
     int roundResult = 0;
 
@@ -73,8 +73,7 @@ string Game::numToChoice(int choice){
             break;
     }
 }
-int Game::gameRound(int roundNumber, int userChoice){
-    int userChoice = 0;
+int Game::gameRound(int userChoice){
     int compChoice = (rand() % 3) + 1;
     int roundResult = -2;
     
@@ -105,17 +104,24 @@ int Game::gameRound(int roundNumber, int userChoice){
 }
 
 int main(){
-    int numRounds;
+    int numRounds = 0;
     int roundNumber;
     int userChoice;
     
-    cout << "Round " << roundNumber + 1 << endl;
-    cout << "Please enter 1 for rock, 2 for paper, and 3 for scissors." << endl;
-    cin >> userChoice;
+    cout << "Time to play Rock, Paper, Scissors!" << endl;
+    cout << "First, please choose if you would like to play 3, 5, or 7 rounds." << endl;
+    cin >> roundNumber;
     
-    Game gamePlay(numRounds);
-    Game gameRound(roundNumber, userChoice);
+    cout << "Round " << numRounds + 1 << endl;
+    cout << "Please enter 1 for rock, 2 for paper, and 3 for scissors." << endl;
+  
+    for(i = 0; i <= roundNumber){
+        cin >> userChoice;
+        userGame.gameRound(userChoice);
+    }
+    
     Game userGame;
+    
     userGame.play();
 }
 
