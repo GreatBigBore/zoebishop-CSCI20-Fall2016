@@ -60,14 +60,11 @@ int main(){
     cout << "What would you like to order? Please enter the corresponding order number." << endl;
     cout << "When you are done ordering, enter a 0." << endl;
     cin >> userOrder;
-    totalOrder[userOrder - 1] = totalOrder[userOrder - 1] + 1;
-    cout << "That will be $"<< price[userOrder - 1][0] << "." << endl;
-    double totalPrice = price[userOrder - 1][0];
-    cout << "There are " << price[userOrder - 1][1] - 1 << " " << menu[userOrder - 1] << " left." << endl;
-    cout << "Anything else?" << endl;
-    cin >> userOrder;
+    
+  double totalPrice = 0;
    
    do{
+    totalOrder[userOrder - 1] = totalOrder[userOrder - 1] + 1;
     cout << "That will be $"<< price[userOrder - 1][0] << "." << endl;
     totalPrice = totalPrice + price[userOrder - 1][0];
     cout << "There are " << price[userOrder - 1][1] - 1 << menu[userOrder - 1] << " left." << endl;

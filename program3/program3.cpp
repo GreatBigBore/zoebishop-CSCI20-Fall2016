@@ -111,17 +111,15 @@ int main(){
     cout << "Time to play Rock, Paper, Scissors!" << endl;
     cout << "First, please choose if you would like to play 3, 5, or 7 rounds." << endl;
     cin >> roundNumber;
-    
-    cout << "Round " << numRounds + 1 << endl;
-    cout << "Please enter 1 for rock, 2 for paper, and 3 for scissors." << endl;
   
     for(i = 0; i <= roundNumber){
+        cout << "Round " << numRounds + 1 << endl;
+        cout << "Please enter 1 for rock, 2 for paper, and 3 for scissors." << endl;
         cin >> userChoice;
         userGame.gameRound(userChoice);
     }
     
     Game userGame;
-    
     userGame.play();
 }
 
