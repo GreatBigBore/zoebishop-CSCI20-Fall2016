@@ -33,16 +33,34 @@ else if(strcmp(firstName, lastName) == 0){
 }
 
 else{
+char firstUsername[22]; 
+char secondUsername[30];
+char thirdUsername[21];
+
+//Clears memory in arrays first and third username so we don't get weird characters
+memset(firstUsername, 0, 22);
+memset(thirdUsername, 0, 21);
+
+//Copies alloted amount of first name into username
+strncpy(firstUsername, firstName, 2);
+strncpy(secondUsername, firstName, 10);
+strncpy(thirdUsername, firstName, 1);
+
+//Combines the part of the first name with total last name for whole username
+strcat(firstUsername, lastName);
+strcat(secondUsername, lastName); 
+strcat(thirdUsername, lastName); 
+
 cout << endl << "Name: " << firstName << " " << lastName << endl;
 cout << "Which of the three usernames would you like?" << endl;
 
 //Outputs first username type ex.ZoBishop
- cout << endl << firstName[0] << firstName[1] << lastName << endl;
+ cout << endl << firstUsername << endl;
  
  //Outputs second username type ex.ZoeBishop
- cout << firstName << lastName << endl;
+ cout << secondUsername << endl;
  
  //Outputs third username type ex.ZBishop
- cout << firstName[0] << lastName << endl;
+ cout << thirdUsername << endl;
 }
 }
