@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cstring>
-#include <string>
 using namespace std;
 
 /* This program is designed to accept a user
@@ -20,6 +19,18 @@ cin >> firstName;
 cout << endl << "Please enter your last name." << endl;
 cin >> lastName;
 
+int fNameLen = strlen(firstName);
+int lNameLen = strlen(lastName);
+if(fNameLen > 10 || lNameLen > 20){
+    cout << endl << "Your name exceeds the maximum length. Please enter a different name." << endl;
+}
+
+int strcmp(firstName, lastName);
+
+else if(strcmp(firstName, lastName) == 0){
+    cout << endl << "These two names are the same. Please enter a different name." << endl;
+}
+else{
 cout << endl << "Name: " << firstName << " " << lastName << endl;
 cout << "Which of the three usernames would you like?" << endl;
 
@@ -31,4 +42,5 @@ cout << "Which of the three usernames would you like?" << endl;
  
  //Outputs third username type ex.ZBishop
  cout << firstName[0] << lastName << endl;
+}
 }
