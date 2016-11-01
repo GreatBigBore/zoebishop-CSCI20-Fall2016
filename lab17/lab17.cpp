@@ -39,6 +39,7 @@ char thirdUsername[21];
 
 //Clears memory in arrays first and third username so we don't get weird characters
 memset(firstUsername, 0, 22);
+memset(secondUsername, 0, 30);
 memset(thirdUsername, 0, 21);
 
 //Copies alloted amount of first name into username
