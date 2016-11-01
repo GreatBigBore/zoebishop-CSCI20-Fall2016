@@ -19,6 +19,14 @@ cin >> firstName;
 cout << endl << "Please enter your last name." << endl;
 cin >> lastName;
 
+for(int i = 0; i < 10; ++i){
+    firstName[i] = tolower(firstName[i]);
+}
+
+for(int j = 0; j < 20; ++j){
+    lastName[j] = tolower(lastName[j]);
+}
+
 int fNameLen = strlen(firstName);
 int lNameLen = strlen(lastName);
 
