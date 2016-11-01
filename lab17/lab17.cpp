@@ -21,15 +21,17 @@ cin >> lastName;
 
 int fNameLen = strlen(firstName);
 int lNameLen = strlen(lastName);
+
+//Checks to make sure name is within array limits
 if(fNameLen > 10 || lNameLen > 20){
     cout << endl << "Your name exceeds the maximum length. Please enter a different name." << endl;
 }
 
-int strcmp(firstName, lastName);
-
+//Checks to make sure first and last names are different
 else if(strcmp(firstName, lastName) == 0){
     cout << endl << "These two names are the same. Please enter a different name." << endl;
 }
+
 else{
 cout << endl << "Name: " << firstName << " " << lastName << endl;
 cout << "Which of the three usernames would you like?" << endl;
