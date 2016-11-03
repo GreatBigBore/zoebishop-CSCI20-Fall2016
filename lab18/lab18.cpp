@@ -28,29 +28,20 @@ else if(firstName == lastName){
     cout << endl << "These two names are the same. Please enter a different name." << endl;
 }
 
-string userName1;
-string userName2;
-string userName3;
-
-userName1 = firstName.replace(2,8,lastName);
-cout << userName1 << endl;
-
-userName2 = firstName + lastName;
-cout << userName2 << endl;
-
-userName3 = firstName.replace(1,8, lastName);
-cout << userName3 << endl;
+string userName1 = firstName;
+string userName2 = firstName;
+string userName3 = firstName;
 
 cout << endl << "Name: " << firstName << " " << lastName << endl;
 cout << "Which of these usernames would you like?" << endl;
 
+userName1 = firstName.replace(2,8,lastName);
+cout << userName1 << endl;
 
-/*for(int i = 0; i < 10; ++i){
-    firstName[i] = tolower(firstName[i]);
-}
+userName2 = userName2.append(lastName);
+cout << userName2 << endl;
 
-for(int j = 0; j < 20; ++j){
-    lastName[j] = tolower(lastName[j]);
-}*/
+userName3 = firstName.replace(1,8, lastName);
+cout << userName3 << endl;
 
 }
