@@ -19,14 +19,17 @@ int main (){
     
     inFS.close();
     average = average / 12;
+    
+    ofstream outFS;
+    outFS.open("output.txt");
 
     for(int i = 0; i < 3; ++i){
         rowSums[i] = 0;
         for(int j = 0; j < 4; ++j){
-            cout << numList[i][j] << "   ";
+            outFS << numList[i][j] << "   ";
             rowSums[i] += numList[i][j];
         }
-        cout << rowSums[i] << endl;
+        outFS << rowSums[i] << endl;
         rowSums[i] = 0;
     }
     
@@ -35,10 +38,10 @@ int main (){
         for(int i = 0; i < 3; ++i){
             colSums[j] += numList[i][j];
         }
-        cout << colSums[j] << "  ";
+        outFS << colSums[j] << "  ";
     }
     
-   cout << endl << "The average of these numbers is: " << average << endl;
+   outFS << endl << "The average of these numbers is: " << average << endl;
    
 
 }
