@@ -2,6 +2,19 @@
 #include <fstream>
 using namespace std;
 
+ int rowCalc(int[] row){
+        int sum = 0;
+        sum = sum + nums[i][0];
+        cout << nums[i][0];
+        cout << sum;
+    }
+int colCalc(int[] column){
+        int sum = 0;
+        sum = sum + nums[0][j];
+        cout << nums[0][j];
+        cout << sum;
+    }
+
 int main (){
     ifstream inFS;
     inFS.open("nums.txt");
@@ -19,24 +32,12 @@ int main (){
     inFS.close();
     average = average / 12;
     
-    
-    int rowCalc(int row){
-        int sum = 0;
-        sum = sum + nums[i][0]
-        cout << sum;
-    }
-    int colCalc(int column){
-        int sum = 0;
-        sum = sum + nums[0][j]
-        cout << sum;
-    }
-    
     for(int i = 0; i < 3; ++i){
-        rowCalc(i);
+        rowCalc(numList[i]);
     }
     
-    for(int j = 0; i < 4; ++i){
-        colCalc(j);
+    for(int j = 0; j < 4; ++j){
+        colCalc(numList[j]);
     }
     
     cout << average << endl;
