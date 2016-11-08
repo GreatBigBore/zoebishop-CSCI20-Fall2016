@@ -7,17 +7,38 @@ int main (){
     inFS.open("nums.txt");
     int numList[3][4];
     int average = 0;
+    int sum = 0;
     
     for(int i = 0; i < 3; ++i){
         for(int j = 0; j < 4; ++j){
             inFS >> numList[i][j];
-            cout << numlist[i][j];
+            cout << numList[i][j] << " ";
+            average = average + numList[i][j];
         }
     }
- 
-    
-    /*for(i = 0; i < 3; ++i){
-        sum = sum + numList[i][0];
-    }*/
     inFS.close();
+    average = average / 12;
+    
+    
+    int rowCalc(int row){
+        int sum = 0;
+        sum = sum + nums[i][0]
+        cout << sum;
+    }
+    int colCalc(int column){
+        int sum = 0;
+        sum = sum + nums[0][j]
+        cout << sum;
+    }
+    
+    for(int i = 0; i < 3; ++i){
+        rowCalc(i);
+    }
+    
+    for(int j = 0; i < 4; ++i){
+        colCalc(j);
+    }
+    
+    cout << average << endl;
+
 }
