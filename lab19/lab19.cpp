@@ -13,7 +13,6 @@ int main (){
     for(int i = 0; i < 3; ++i){
         for(int j = 0; j < 4; ++j){
             inFS >> numList[i][j];
-            cout << numList[i][j] << " ";
             average = average + numList[i][j];
         }
     }
@@ -22,22 +21,24 @@ int main (){
     average = average / 12;
 
     for(int i = 0; i < 3; ++i){
+        rowSums[i] = 0;
         for(int j = 0; j < 4; ++j){
-            for(int k = 0; k < 3; ++k){
-                rowSums[k] = numList[i][j];
-            }
+            cout << numList[i][j] << "   ";
+            rowSums[i] += numList[i][j];
         }
+        cout << rowSums[i] << endl;
+        rowSums[i] = 0;
     }
     
     for(int j = 0; j < 4; ++j){
+        colSums[j] = 0;
         for(int i = 0; i < 3; ++i){
-            for(int k = 0; k < 4; ++k){
-                colSums[k] = numList[i][j];
-            }
+            colSums[j] += numList[i][j];
         }
+        cout << colSums[j] << "  ";
     }
- 
-   cout << "The average of these numbers is: " << average << endl;
+    
+   cout << endl << "The average of these numbers is: " << average << endl;
    
 
 }
