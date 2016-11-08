@@ -42,6 +42,6 @@ int main (){
     }
     
    outFS << endl << "The average of these numbers is: " << average << endl;
-   
+      
 
 }
