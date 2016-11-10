@@ -19,8 +19,8 @@ class concord{
     int wordCount[50];
     int lineNum[50];
     
-    stopword();
-    dupWord();
+    stopWordVal();
+    dupWordVal();
     newWord();
     private:
     string newWord;
@@ -46,7 +46,7 @@ string lineToWords(string newWord){
 }
 
 //Checks to see if word in file is a stop word
-int stopWordCheck(inputWord){
+int stopWordCheck(string inputWord){
      for(int i = 0; i < 571; ++i){
         if(stopWord[i] == inputWord){
             return 0;
@@ -56,21 +56,12 @@ int stopWordCheck(inputWord){
 }
 
 //Checks to see if word in file is a duplicate
-int dupWordCheck(inputWord){
+int dupWordCheck(string inputWord){
     for(int i = 0; i < 50; ++i){
         if(newWord[i] == inputWord){
-            return 0;
-        }
-    }   
-    return 1;
-}
-
-int dupWordAdd(dupWordVal){
-    for(int i = 0; i < 50; ++i){
-        if(dupWordVal == 1){
             ++wordCount[i];
         }
-    }
+    }   
 }
 
 int main(){
