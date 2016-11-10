@@ -37,7 +37,7 @@ string lineToWords(string newWord){
 }
 
 //Checks to see if word in file is a stop word
-int stopWordCheck(stopWord[], newWord, inputWord){
+int stopWordCheck(inputWord){
      for(int i = 0; i < 571; ++i){
         if(stopWord[i] == inputWord){
             return 0;
@@ -47,14 +47,13 @@ int stopWordCheck(stopWord[], newWord, inputWord){
 }
 
 //Checks to see if word in file is a duplicate
-int dupWordCheck(newWord[], wordCount[]){
+int dupWordCheck(inputWord){
     for(int i = 0; i < 50; ++i){
         if(newWord[i] = inputWord;){
-            ++wordCount[i];
-            //LINE NUMBER
-            find(newWord[i]);
+            return 0;
         }
-    }    
+    }   
+    return 1;
 }
 
 int main(){
