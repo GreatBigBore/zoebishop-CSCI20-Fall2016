@@ -14,6 +14,9 @@ Created by: Zoe Bishop
 
 class concord{
     public: 
+    string stopWord[571];
+    string newWord[50];
+    
     stopword();
     dupWord();
     newWord();
@@ -49,7 +52,7 @@ int stopWordCheck(inputWord){
 //Checks to see if word in file is a duplicate
 int dupWordCheck(inputWord){
     for(int i = 0; i < 50; ++i){
-        if(newWord[i] = inputWord;){
+        if(newWord[i] == inputWord){
             return 0;
         }
     }   
@@ -61,8 +64,6 @@ int main(){
     
     //Opens stop word file
     string stop = "stoptxt.txt";
-    string stopWord[571];
-    
     ifstream stoptxt;
     stoptxt.open(stop);
   
@@ -73,8 +74,6 @@ int main(){
   
     //Opens test file
     string input = "testfile.txt";
-    string inputWord;
-  
     ifstream testfile;
     testfile.open(input);
   
