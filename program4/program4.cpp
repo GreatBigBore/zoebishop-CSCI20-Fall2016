@@ -16,6 +16,8 @@ class concord{
     public: 
     string stopWord[571];
     string newWord[50];
+    int wordCount[50];
+    int lineNum[50];
     
     stopword();
     dupWord();
@@ -37,6 +39,13 @@ string lineToWords(string newWord){
             wordStartIndex = wordEndIndex + 1;
         }
     }
+    int stopWordVal = stopWordCheck(newWord);
+    int dupWordVal = dupWordCheck(newWord);
+    for(int i = 0; i < 50; ++i){
+        if((stopWordVal = 1) || (dupWordVal = 1)){
+            ++wordCount[i];
+        }
+    }    
 }
 
 //Checks to see if word in file is a stop word
@@ -76,11 +85,6 @@ int main(){
     string input = "testfile.txt";
     ifstream testfile;
     testfile.open(input);
-  
-    //Other stuff
-    string newWords[50];
-    int wordCount[50];
-    int lineNum[50];
   
     //Runs functions
     for(int i = 0; i < 50; ++i){
