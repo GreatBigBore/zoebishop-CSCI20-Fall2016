@@ -5,38 +5,40 @@ using namespace std;
 
 class concord{
     public:
+    stopword();
+    dupWord();
+    newWord();
     private:
 };
 
-
-int stopWord{
-     if(!(stopWord[i] == inputWord)){
-        ++wordCount[i];
-    }
-}
-
-int dupWord{
-    if(newWord[i] = inputWord;){
-        ++wordCount[i];
-        //LINE NUMBER
-        find(newWord[i]);
-    }
-}
-
-newWord{
+string newWord(){
     int wordStartIndex = 0;
     int wordEndIndex = 0;
     
     for(int i = 0; i < 571; ++i){
         getline(testfile, inputWord);
         for(int j = 0; j < 571; ++j){
-            while(char != ' '){
+            while(wordStartIndex != inputword.length()){
                 wordEndIndex = find(' ');
                 substr(wordStartIndex, wordEndIndex - wordStartIndex);
             
                 wordStartIndex = wordEndIndex + 1;
          }
      } 
+}
+
+int stopWord(){
+     if(!(stopWord[i] == inputWord)){
+        ++wordCount[i];
+    }
+}
+
+int dupWord(){
+    if(newWord[i] = inputWord;){
+        ++wordCount[i];
+        //LINE NUMBER
+        find(newWord[i]);
+    }
 }
 
 int main(){
@@ -50,7 +52,6 @@ int main(){
   
   for(int i = 0; i < 571; ++i){
       getline(stoptxt, stopWord[i]);
-      cout << stopWord[i] << endl;
   }
   
   string input = "testfile.txt";
