@@ -13,11 +13,12 @@ Created by: Zoe Bishop
 */
 
 class concord{
-    public:
+    public: 
     stopword();
     dupWord();
     newWord();
     private:
+    string newWord;
 };
 
 string lineToWords(string newWord){
@@ -27,17 +28,19 @@ string lineToWords(string newWord){
     while(!testfile.eof){
         getline(testfile, inputLine);
         while(wordStartIndex != inputLine.length()){
-            wordEndIndex = find(' ');
+            wordEndIndex = find(' ', wordStartIndex);
             newWord = substr(wordStartIndex, wordEndIndex - wordStartIndex);
             wordStartIndex = wordEndIndex + 1;
         }
     }
 }
 
-int stopWordCheck(stopWord[]){
-     if(!(stopWord[i] == inputWord)){
-        ++wordCount[i];
-    }
+int stopWordCheck(stopWord[], newWord){
+     for(int i = 0; i < 571; ++i){
+        if(!(stopWord[i] == inputWord)){
+            ++wordCount[i];
+        }
+     }    
 }
 
 int dupWordCheck(newWord[], wordCount[]){
