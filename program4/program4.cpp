@@ -37,18 +37,23 @@ string lineToWords(string newWord){
 
 int stopWordCheck(stopWord[], newWord){
      for(int i = 0; i < 571; ++i){
-        if(!(stopWord[i] == inputWord)){
-            ++wordCount[i];
+        if(stopWord[i] == inputWord){
+            return false;
+        }
+        else if(!(stopWord[i] == inputWord)){
+            return true;
         }
      }    
 }
 
 int dupWordCheck(newWord[], wordCount[]){
-    if(newWord[i] = inputWord;){
-        ++wordCount[i];
-        //LINE NUMBER
-        find(newWord[i]);
-    }
+    for(int i = 0; i < 50; ++i){
+        if(newWord[i] = inputWord;){
+            ++wordCount[i];
+            //LINE NUMBER
+            find(newWord[i]);
+        }
+    }    
 }
 
 int main(){
