@@ -22,7 +22,7 @@ int main(){
   }
   
   string input = "testfile.txt";
-  string inputWords[50];
+  string inputWords;
   
   ifstream testfile;
   testfile.open(input);
@@ -37,20 +37,19 @@ int main(){
   int lineNum[50];
   
   for(int i = 0; i < 571; ++i){
-    if(stopWords[i] == inputWords[i]){
-        
-    }
-    else if(inputWords[i] == )
+      getline(testfile, inputWords);
+    if(!(stopWords[i] == inputWords[i])){
         ++wordCount[i];
     }
     else{
         newWords[i] = inputWords[i];
         ++wordCount[i];
         //LINE NUMBER
+        find(newWords[i]);
     }
 
     for(int i = 0; i < 50; ++i){
         cout << newWords[i] << "First occured on line: " << lineNum[i];
         cout << " and occured a total number of " << wordCount[i] << " times." << endl;
     }
-}
+};
