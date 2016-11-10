@@ -37,15 +37,12 @@ string lineToWords(string newWord){
             wordEndIndex = find(' ', wordStartIndex);
             newWord = substr(wordStartIndex, wordEndIndex - wordStartIndex);
             wordStartIndex = wordEndIndex + 1;
+            
+            int stopWordVal = stopWordCheck(newWord);
+            int dupWordVal = dupWordCheck(newWord);
+            } 
         }
     }
-    int stopWordVal = stopWordCheck(newWord);
-    int dupWordVal = dupWordCheck(newWord);
-    for(int i = 0; i < 50; ++i){
-        if((stopWordVal = 1) || (dupWordVal = 1)){
-            ++wordCount[i];
-        }
-    }    
 }
 
 //Checks to see if word in file is a stop word
@@ -66,6 +63,14 @@ int dupWordCheck(inputWord){
         }
     }   
     return 1;
+}
+
+int dupWordAdd(dupWordVal){
+    for(int i = 0; i < 50; ++i){
+        if(dupWordVal == 1){
+            ++wordCount[i];
+        }
+    }
 }
 
 int main(){
