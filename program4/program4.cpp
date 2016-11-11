@@ -12,43 +12,76 @@ Created on: 11.10.16
 Created by: Zoe Bishop
 */
 
+const int stopWordNum = 571;
+const int wordMax = 50;
+
 class concord{
-    public: 
-    string stopWord[571];
-    string newWord[50];
-    int wordCount[50];
-    int lineNum[50];
-    
-    stopWordVal();
-    dupWordVal();
-    newWord();
-    private:
+public: 
+    concord();
+    int stopWordsCheck(string inputWord);
+    void dupWordCheck(string inputWord, int lineNum);
+    string lineToWords(ifstream& testfile);
+    string getNewWord(int wordNum);
+    int getWordCounts(int wordNum);
+    int getLineNumber(int wordNum);
+    int getTotalWordCount();
+    void stopWordArray(ifstream& stoptxt);
+private:
     string newWord;
+    string stopWords[stopWordNum + 10];
+    string uniqueWords[wordMax + 10];
+    int wordCounts[wordMax + 10];
+    int lineNumbers[wordMax + 10];
+    int wordIndex;
+    int lineNum;
 };
 
-//Splits up lines into individual words
-string lineToWords(string newWord){
-    int wordStartIndex = 0;
-    int wordEndIndex = 0;
+concord::concord(){
+    wordIndex = 0;
+    lineNum = 0;
     
-    while(!testfile.eof){
+    for(int i = 0; i < wordMax; ++i){
+        uniqueWords[i] = string();
+        wordCounts[i] = 0;
+        lineNumbers[i] = 0;
+    }
+}
+
+//Splits up lines into individual words
+string concord::lineToWords(ifstream& testfile){
+   // while(!testfile.eof()){
+   for(int i = 0; i < 1; ++ i){
+        int wordStartIndex = 0;
+        int wordEndIndex = 0;
+        string inputLine = "poo ber";
         getline(testfile, inputLine);
-        while(wordStartIndex != inputLine.length()){
-            wordEndIndex = find(' ', wordStartIndex);
-            newWord = substr(wordStartIndex, wordEndIndex - wordStartIndex);
-            wordStartIndex = wordEndIndex + 1;
-            
-            int stopWordVal = stopWordCheck(newWord);
-            int dupWordVal = dupWordCheck(newWord);
-            } 
+        cout << inputLine << endl;
+        ++lineNum;
+        while(wordEndIndex != -1){
+            wordEndIndex = inputLine.find(' ', wordStartIndex);
+            if(wordEndIndex == -1){
+                //return string();
+               // newWord = inputLine.substr(wordStartIndex, 1);
+                //cout << "'" << newWord <<  wordStartIndex << "'" << endl;
+            }
+            else{
+                newWord = inputLine.substr(wordStartIndex, wordEndIndex - wordStartIndex);
+                cout << "'" << newWord << "'" << endl;
+                wordStartIndex = wordEndIndex + 1;
+            }    
+            int stopWordsVal = stopWordsCheck(newWord);
+            if(stopWordsVal == 1){
+                dupWordCheck(newWord, lineNum);
+            }
         }
     }
 }
 
 //Checks to see if word in file is a stop word
-int stopWordCheck(string inputWord){
-     for(int i = 0; i < 571; ++i){
-        if(stopWord[i] == inputWord){
+int concord::stopWordsCheck(string inputWord){
+    return 2;
+     for(int i = 0; i < stopWordNum; ++i){
+        if(stopWords[i] == inputWord){
             return 0;
         }
     }  
@@ -56,12 +89,41 @@ int stopWordCheck(string inputWord){
 }
 
 //Checks to see if word in file is a duplicate
-int dupWordCheck(string inputWord){
-    for(int i = 0; i < 50; ++i){
-        if(newWord[i] == inputWord){
-            ++wordCount[i];
+void concord::dupWordCheck(string inputWord, int lineNum){
+    return;
+    for(int i = 0; i < getTotalWordCount(); ++i){
+        if(uniqueWords[i] == inputWord){
+            ++wordCounts[i];
+            return;
         }
-    }   
+    } 
+    uniqueWords[wordIndex] = inputWord; 
+    lineNumbers[wordIndex] = lineNum;
+    wordCounts[wordIndex] = 1;
+        ++wordIndex;
+}
+
+string concord::getNewWord(int wordNum){
+    return uniqueWords[wordNum];
+}
+
+int concord::getWordCounts(int wordNum){
+    return wordCounts[wordNum];
+}
+
+int concord::getLineNumber(int wordNum){
+    return lineNumbers[wordNum];
+}
+
+int concord::getTotalWordCount(){
+    return wordIndex;
+}
+
+void concord::stopWordArray(ifstream& stoptxt){
+    for(int i = 0; i < stopWordNum; ++i){
+      stopWords[i] = string();
+      getline(stoptxt, stopWords[i]);
+    }
 }
 
 int main(){
@@ -71,11 +133,8 @@ int main(){
     string stop = "stoptxt.txt";
     ifstream stoptxt;
     stoptxt.open(stop);
-  
-    //Stop words into a stop word array
-    for(int i = 0; i < 571; ++i){
-      getline(stoptxt, stopWord[i]);
-    }
+    
+    game.stopWordArray(stoptxt);
   
     //Opens test file
     string input = "testfile.txt";
@@ -83,15 +142,11 @@ int main(){
     testfile.open(input);
   
     //Runs functions
-    for(int i = 0; i < 50; ++i){
-      game.newWord;
-      game.stopWord;
-      game.dupWord;
-    }
+    game.lineToWords(testfile);
     
     //Prints results
-    for(int i = 0; i < 50; ++i){
-        cout << newWord[i] << "First occured on line: " << lineNum[i];
-        cout << " and occured a total number of " << wordCount[i] << " times." << endl;
+    for(int i = 0; i < game.getTotalWordCount(); ++i){
+        cout << game.getNewWord(i) << "First occured on line: " << game.getLineNumber(i);
+        cout << " and occured a total number of " << game.getWordCounts(i) << " times." << endl;
     }
 };
