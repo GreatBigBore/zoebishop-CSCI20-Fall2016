@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include<fstream>
+#include<iomanip>
 using namespace std;
 
 /* This program is a concordance. It accepts an input file
@@ -20,7 +21,7 @@ public:
     concord();
     int stopWordsCheck(string inputWord);
     void dupWordCheck(string inputWord, int lineNum);
-    string lineToWords(ifstream& testfile);
+    void lineToWords(ifstream& userFile);
     string getNewWord(int wordNum);
     int getWordCounts(int wordNum);
     int getLineNumber(int wordNum);
@@ -48,27 +49,25 @@ concord::concord(){
 }
 
 //Splits up lines into individual words
-string concord::lineToWords(ifstream& testfile){
-   // while(!testfile.eof()){
-   for(int i = 0; i < 1; ++ i){
+void concord::lineToWords(ifstream& userFile){
+   while(!userFile.eof()){
         int wordStartIndex = 0;
         int wordEndIndex = 0;
-        string inputLine = "poo ber";
-        getline(testfile, inputLine);
-        cout << inputLine << endl;
+        string inputLine;
+        getline(userFile, inputLine);
         ++lineNum;
         while(wordEndIndex != -1){
             wordEndIndex = inputLine.find(' ', wordStartIndex);
             if(wordEndIndex == -1){
-                //return string();
-               // newWord = inputLine.substr(wordStartIndex, 1);
-                //cout << "'" << newWord <<  wordStartIndex << "'" << endl;
+               newWord = inputLine.substr(wordStartIndex, 1);
             }
             else{
                 newWord = inputLine.substr(wordStartIndex, wordEndIndex - wordStartIndex);
-                cout << "'" << newWord << "'" << endl;
                 wordStartIndex = wordEndIndex + 1;
             }    
+            for(int i = 0; i < newWord.length(); ++i){
+                newWord.at(i) = tolower(newWord.at(i));
+            }
             int stopWordsVal = stopWordsCheck(newWord);
             if(stopWordsVal == 1){
                 dupWordCheck(newWord, lineNum);
@@ -79,8 +78,7 @@ string concord::lineToWords(ifstream& testfile){
 
 //Checks to see if word in file is a stop word
 int concord::stopWordsCheck(string inputWord){
-    return 2;
-     for(int i = 0; i < stopWordNum; ++i){
+    for(int i = 0; i < stopWordNum; ++i){
         if(stopWords[i] == inputWord){
             return 0;
         }
@@ -90,7 +88,6 @@ int concord::stopWordsCheck(string inputWord){
 
 //Checks to see if word in file is a duplicate
 void concord::dupWordCheck(string inputWord, int lineNum){
-    return;
     for(int i = 0; i < getTotalWordCount(); ++i){
         if(uniqueWords[i] == inputWord){
             ++wordCounts[i];
@@ -130,23 +127,42 @@ int main(){
     concord game;
     
     //Opens stop word file
-    string stop = "stoptxt.txt";
+    string stop = "english.stop.txt";
     ifstream stoptxt;
     stoptxt.open(stop);
     
     game.stopWordArray(stoptxt);
+    stoptxt.close();  
+
+    string fileName;  
+    cout << "Please enter the name of the file you would like to open." << endl;
+    cin >> fileName;
   
     //Opens test file
-    string input = "testfile.txt";
-    ifstream testfile;
-    testfile.open(input);
+    ifstream userFile;
+    userFile.open(fileName);
   
     //Runs functions
-    game.lineToWords(testfile);
+    game.lineToWords(userFile);
+    userFile.close();
     
     //Prints results
+    cout << "Word" << setw(20) << "Line #" << setw(20) << "# of Occurences" << endl;
+    
     for(int i = 0; i < game.getTotalWordCount(); ++i){
-        cout << game.getNewWord(i) << "First occured on line: " << game.getLineNumber(i);
-        cout << " and occured a total number of " << game.getWordCounts(i) << " times." << endl;
+        cout << setw(20) << left << game.getNewWord(i);
+        cout << game.getLineNumber(i);
+        cout << setw(20) << left << " ";
+        cout << game.getWordCounts(i) << endl;
     }
-};
+    
+    ofstream concordance;
+    concordance.open("programOutput.txt");
+    for(int i = 0; i < game.getTotalWordCount(); ++i){
+        concordance << setw(20) << left << game.getNewWord(i);
+        concordance << game.getLineNumber(i);
+        concordance << setw(20) << left << " ";
+        concordance << game.getWordCounts(i) << endl;
+    }
+    concordance.close();
+}
