@@ -1,14 +1,14 @@
-#include <iostream> 
-#include <cstring>
-using namespace std;
+#include <iostream> //includes input and output functions from c++ library
+#include <cstring> //includes cstring functions from c++ library
+using namespace std; //shortcut so we don't have to include std in each line of code
  
-int main()
+int main() //main program code
 {
                 char firststr[10]; //creates char array of size 10
                 int firstname = 0; //initializes int firstname to 0
                 char *head = firststr; //initializing pointer to user input firststr
                 char *tail = firststr; //initializing pointer to user input firststr
-                cout << "Please enter a 10 letter word or less" << endl; //outputs the text and an endline
+                cout << "Please enter a 10 letter word or less" << endl; //outputs the text and an endline to screen
                 cin >> firststr; //accepts user input and stores it in firststr
                 strlen(firststr); //gets length of firststr
                 firstname = strlen(firststr); //stores length of firststr in firstname
@@ -18,43 +18,45 @@ int main()
                 if (firstname<10) //runs if int firstname is < 10
                 {
                                 //outputs each character in firststr until it reaches a null character
-                                while (*head != '\0') //runs loop until 
+                                while (*head != '\0') //runs loop until it finds a null character in the firststr array
                                 {
-                                                cout << *head;
-                                                head++;
+                                                cout << *head; //outputs the char 
+                                                head++; //adds one to head to ensure we don't have infinite loop
                                 }
                 }
                 //outputs warning if user word exceeds ten characters
-                else
+                else //runs if the if statement above is not satisfied
                 {
-                                cout << "WARNING WORD TOO BIG TO DISPLAY!!" << endl;
+                                cout << "WARNING WORD TOO BIG TO DISPLAY!!" << endl; //outputs text and endline to screen
                 }
-                cout << endl;
-                //gets the memory address of the last character in user's word
-                tail = &firststr[strlen(firststr) - 1];
+                cout << endl; //outputs an endline to screen
                 
-                if (firstname < 10)
+                tail = &firststr[strlen(firststr) - 1]; //gets the memory address of the last character in user's word and stores in tail
+                
+                if (firstname < 10) //runs if int firstname is < 10
                 {
                                 //
-                                while (*tail>0)
+                                while (*tail>0) //runs until 
                                 {
-                                                cout << *tail;
-                                                tail--;
+                                                cout << *tail; //outputs user word backward
+                                                tail--; //subtracts one from tail
                                 }
                 }
-                cout << endl;
-                head = firststr;
-                tail = &firststr[strlen(firststr) - 1];
-                head++;
-                tail--;
-                if (*head == *tail)
+                cout << endl; //outputs an endilne to screen
+                head = firststr; //stores firststr in head
+                tail = &firststr[strlen(firststr) - 1]; //gets memory address of last character in user word and stores in tail
+                head++; //adds one to head
+                tail--; //subtracts one from tail
+                //runs if head and tail hold the same char values for every index
+                if (*head == *tail) //checks to see if the user word is the same backwards and forwards
                 {
-                                cout << "It is an palindrome!" << endl;
+                                cout << "It is a palindrome!" << endl; //outputs text and an endline to screen
                 }
+                //runs if the if statement is not satisfied
                 else
                 {
-                                cout << "It is not an palindrome" << endl;
+                                cout << "It is not a palindrome" << endl; //outputs text and endline to screen
                 }
  
-                return 0;
+                return 0; //returns 0 to confirm end of program
 }
