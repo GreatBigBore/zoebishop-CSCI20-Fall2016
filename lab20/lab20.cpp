@@ -31,12 +31,12 @@ int main() //main program code
                 }
                 cout << endl; //outputs an endline to screen
                 
-                tail = &firststr[strlen(firststr) - 1]; //gets the memory address of the last character in user's word and stores in tail
+                tail = &firststr[strlen(firststr) - 1]; //gets memory address of last character in user word and stores that char in tail
                 
                 if (firstname < 10) //runs if int firstname is < 10
                 {
-                                //
-                                while (*tail>0) //runs until 
+                                //runs until it reaches the 'beginning' of the array (index 0)
+                                while (*tail>0)//checks to make sure the index value is > 0
                                 {
                                                 cout << *tail; //outputs user word backward
                                                 tail--; //subtracts one from tail
@@ -44,7 +44,7 @@ int main() //main program code
                 }
                 cout << endl; //outputs an endilne to screen
                 head = firststr; //stores firststr in head
-                tail = &firststr[strlen(firststr) - 1]; //gets memory address of last character in user word and stores in tail
+                tail = &firststr[strlen(firststr) - 1]; //gets memory address of last character in user word and stores that char in tail
                 head++; //adds one to head
                 tail--; //subtracts one from tail
                 //runs if head and tail hold the same char values for every index
