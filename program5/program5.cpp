@@ -73,7 +73,6 @@ int main(){
     cout << "Please input the weights of the categories: Assignments, Quizzes/Tests, Other" << endl;
 for(int i = 0; i < 3; ++i){
     cin >> categoryWeights[i];
-    userOne.finalGradeCalc(categoryWeights[i]);
 }
 
     //Creating object
@@ -81,13 +80,14 @@ for(int i = 0; i < 3; ++i){
     
     //Getting user score and total points possible for each assignment
     cout << "Input your scores for each assignment in the first category and enter a -1 when you have inputted all of them." << endl;
-for(int i = 0; i < 50; ++i){
+for(int i = 0; i < 3; ++i){
     while(pointsObtained[i] != -1){  
         cin >> pointsObtained[i];
         cin >> pointsPossible[i];
     }
-    userOne.scoresToDecimals(pointsObtained[i], pointsPossible[i]);
 }
+
+    userOne.scoresToDecimals(pointsObtained, pointsPossible);
 
     cout << "Input the total points possible for your final." << endl;
     cin >> finalPointsPossible;
