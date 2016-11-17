@@ -14,15 +14,15 @@ class finalGradeCalc{
     public:
     finalGradeCalc(double weights[3]);
     void letterGradeToDecimal();
-    double scoresToDecimals(int pointsObtained[50], int totalPoints[50]);
+    void scoresToDecimals(int pointsObtained[50], int totalPoints[50]);
     int scoreRequired(int totalFinalPoints);
+    int finalGradePoints[5];
     private:
     double decimalGrade[50];
     double weightedGrade[50];
     double letterGradeDecimal[5];
     double categoryWeights[3];
     double totalWeightedGrade;
-    
 };
 
 //Puts each category weight into an array index
@@ -43,7 +43,7 @@ void finalGradeCalc::letterGradeToDecimal(){
 }
 
 //Calculates the weighted value of each assignment and the current grade in the class
-double finalGradeCalc::scoresToDecimals(int pointsObtained[50], int totalPoints[50]){
+void finalGradeCalc::scoresToDecimals(int pointsObtained[50], int totalPoints[50]){
     for(int i = 0; i < 3; ++i){
         for(int j = 0; j < 50; ++j){
             decimalGrade[j] = pointsObtained[j] / totalPoints[j];
@@ -55,11 +55,9 @@ double finalGradeCalc::scoresToDecimals(int pointsObtained[50], int totalPoints[
 
 //Calculates required score on final for each letter grade using current weighted grade in class
 int finalGradeCalc::scoreRequired(int totalFinalPoints){
-    int finalGradePoints[5];
     for(int i = 0; i < 5; ++i){
         double finalGradeDecimal = letterGradeDecimal[i] - totalWeightedGrade;
         finalGradePoints[i] = finalGradeDecimal / categoryWeights[2] * totalFinalPoints;
-        return finalGradePoints[i];
     }    
 }
 
@@ -83,6 +81,7 @@ for(int i = 0; i < 3; ++i){
 for(int i = 0; i < 3; ++i){
     while(pointsObtained[i] != -1){  
         cin >> pointsObtained[i];
+        cout << "points out of: ";
         cin >> pointsPossible[i];
     }
 }
@@ -93,7 +92,7 @@ for(int i = 0; i < 3; ++i){
     cin >> finalPointsPossible;
     
     for(int i = 0; i < 5; ++i){
-        if( userOne.scoreRequired(finalPointsPossible) < 0){
+        if(userOne.finalGradePoints[i] < 0){
             cout << "You can skip class!";
         }
     }
