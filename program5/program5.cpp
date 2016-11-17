@@ -2,6 +2,14 @@
 #include <string>
 using namespace std;
 
+/* This program accepts category weights and assignment scores
+and outputs the necessary score on the final to get each letter
+grade in the class
+
+Created On: 11.17.16
+Created By: Zoe Bishop
+*/
+
 class finalGradeCalc{
     public:
     finalGradeCalc(double weights[3]);
@@ -47,9 +55,12 @@ double finalGradeCalc::scoresToDecimals(int pointsObtained[50], int totalPoints[
 
 //Calculates required score on final for each letter grade using current weighted grade in class
 int finalGradeCalc::scoreRequired(int totalFinalPoints){
-    double finalGradeDecimal = letterGradeDecimal - totalWeightedGrade;
-    int finalGradePoints = finalGradeDecimal / categoryWeights[2] * totalFinalPoints;
-    return finalGradePoints;
+    int finalGradePoints[5];
+    for(int i = 0; i < 5; ++i){
+        double finalGradeDecimal = letterGradeDecimal[i] - totalWeightedGrade;
+        finalGradePoints[i] = finalGradeDecimal / categoryWeights[2] * totalFinalPoints;
+        return finalGradePoints[i];
+    }    
 }
 
 int main(){
@@ -58,9 +69,6 @@ int main(){
     int pointsPossible[50];
     int finalPointsPossible = 0;
     
-    //Declaration of object
-    finalGradeCalc userOne(categoryWeights);
-    
     //Getting weights for each category
     cout << "Please input the weights of the categories: Assignments, Quizzes/Tests, Other" << endl;
 for(int i = 0; i < 3; ++i){
@@ -68,6 +76,9 @@ for(int i = 0; i < 3; ++i){
     userOne.finalGradeCalc(categoryWeights[i]);
 }
 
+    //Creating object
+    finalGradeCalc userOne(categoryWeights);
+    
     //Getting user score and total points possible for each assignment
     cout << "Input your scores for each assignment in the first category and enter a -1 when you have inputted all of them." << endl;
 for(int i = 0; i < 50; ++i){
@@ -81,6 +92,9 @@ for(int i = 0; i < 50; ++i){
     cout << "Input the total points possible for your final." << endl;
     cin >> finalPointsPossible;
     
-    userOne.scoreRequired(finalPointsPossible);
-    
+    for(int i = 0; i < 5; ++i){
+        if( userOne.scoreRequired(finalPointsPossible) < 0){
+            cout << "You can skip class!";
+        }
+    }
 }
