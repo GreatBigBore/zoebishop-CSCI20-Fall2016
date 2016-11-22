@@ -9,63 +9,84 @@ grade in the class
 Created On: 11.17.16
 Created By: Zoe Bishop
 */
+const int arraySize = 50;
 
 class finalGradeCalc{
     public:
     finalGradeCalc(double weights[3]);
-    void letterGradeToDecimal();
-    void scoresToDecimals(int pointsObtained[50], int totalPoints[50]);
-    int scoreRequired(int totalFinalPoints);
-    int finalGradePoints[5];
+    double letterGradeToDecimal(char letter);
+    double scoresToDecimals(int categoryPoints[], int totalCategoryPoints);
+    double totalWeightedGrade();
+    double decimalToWeight(int eachCategory);
+   
     private:
-    double decimalGrade[50];
-    double weightedGrade[50];
     double letterGradeDecimal[5];
+    double weightValue[3];
+    double weightedGrade;
+    int totalCategoryPoints[3];
+    int assignPoints[3][arraySize];
     double categoryWeights[3];
-    double totalWeightedGrade;
 };
 
-//Puts each category weight into an array index
 finalGradeCalc::finalGradeCalc(double weights[3]){
     for(int i = 0; i < 3; ++i){
-       categoryWeights[i] =  weights[i];
+        categoryWeights[i] = weights[i];
     }
-    totalWeightedGrade = 0;
 }
 
 //Puts decimal values for each letter grade into an array index
-void finalGradeCalc::letterGradeToDecimal(){
-    for(int i = 0; i < 5; ++i){
-        for(int j = 1; j > .5; j -= .1){
-          letterGradeDecimal[i] = j;  
-        }
-    }
+double finalGradeCalc::letterGradeToDecimal(char letter){
+   switch(letter){
+       case 'A': 
+       return .9;
+       case 'B':
+       return .8;
+       case 'C':
+       return .7;
+       case 'D':
+       return .6;
+       case 'F':
+       return .5;
+       default:
+       return 0;
+   }
 }
 
 //Calculates the weighted value of each assignment and the current grade in the class
-void finalGradeCalc::scoresToDecimals(int pointsObtained[50], int totalPoints[50]){
-    for(int i = 0; i < 3; ++i){
-        for(int j = 0; j < 50; ++j){
-            decimalGrade[j] = pointsObtained[j] / totalPoints[j];
-            weightedGrade[j] = decimalGrade[j] * categoryWeights[i];
-            totalWeightedGrade += weightedGrade[j];
-        } 
+double finalGradeCalc::scoresToDecimals(int categoryPoints[], int totalCategoryPoints){
+   double decimalGrade = 0;
+    for(int i = 0; i < arraySize; ++i){
+        decimalGrade += categoryPoints[i];
     }
+    return decimalGrade;
 }
 
 //Calculates required score on final for each letter grade using current weighted grade in class
-int finalGradeCalc::scoreRequired(int totalFinalPoints){
-    for(int i = 0; i < 5; ++i){
-        double finalGradeDecimal = letterGradeDecimal[i] - totalWeightedGrade;
-        finalGradePoints[i] = finalGradeDecimal / categoryWeights[2] * totalFinalPoints;
-    }    
+double finalGradeCalc::decimalToWeight(int eachCategory){
+    return weightValue[eachCategory] * categoryWeights[eachCategory];
+}
+
+double finalGradeCalc::totalWeightedGrade(){
+    for(int i = 0; i < 3; ++i){
+        double decimal = scoresToDecimals(assignPoints[i], totalCategoryPoints[i]);
+        double weightDecimal = decimalToWeight(i);
+        weightedGrade += weightDecimal;
+    }
+    return weightedGrade;
 }
 
 int main(){
     double categoryWeights[3];
-    int pointsObtained[50];
-    int pointsPossible[50];
+    string categories[3] = {"Assignment", "Quiz/Test", "Other"};
+    char letterGrades[5] = {'A', 'B', 'C', 'D', 'F'};
+    int totalCategoryPoints[3];
     int finalPointsPossible = 0;
+    int assignPoints[3][arraySize];
+    double weightedGrade = 0;
+    double necessaryFinalDecimal = 0;
+    double necessaryFinalPoints = 0;
+    double totalFinalPoints = 0;
+
     
     //Getting weights for each category
     cout << "Please input the weights of the categories: Assignments, Quizzes/Tests, Other" << endl;
@@ -76,24 +97,34 @@ for(int i = 0; i < 3; ++i){
     //Creating object
     finalGradeCalc userOne(categoryWeights);
     
-    //Getting user score and total points possible for each assignment
-    cout << "Input your scores for each assignment in the first category and enter a -1 when you have inputted all of them." << endl;
-for(int i = 0; i < 3; ++i){
-    while(pointsObtained[i] != -1){  
-        cin >> pointsObtained[i];
-        cout << "points out of: ";
-        cin >> pointsPossible[i];
+    //Getting user score and total points possible for each assignment    
+for(int i = 0; i < 3; ++i){   
+    int j = 0;
+    cout << "How many total points were available in the " << categories[i] << " category?" << endl;
+    cin >> totalCategoryPoints[i];
+    cout << endl << "Enter the scores you got on each " << categories[i] << ". Enter -1 when done." << endl;
+    while(assignPoints[i][j] != -1){
+        cin >> assignPoints[i][j];
+        ++j;
     }
 }
 
-    userOne.scoresToDecimals(pointsObtained, pointsPossible);
-
     cout << "Input the total points possible for your final." << endl;
     cin >> finalPointsPossible;
+    totalCategoryPoints[1] -= finalPointsPossible;
+
+    weightedGrade = userOne.totalWeightedGrade();
     
-    for(int i = 0; i < 5; ++i){
-        if(userOne.finalGradePoints[i] < 0){
-            cout << "You can skip class!";
-        }
+    cout << "Right now your grade is: " << weightedGrade << endl;
+    cout << "Here is the minimum score you need on the final for each letter grade." << endl;
+    
+for(int i = 0; i < 5; ++i){
+    necessaryFinalDecimal = (weightedGrade - userOne.letterGradeToDecimal(letterGrades[i])) * categoryWeights[1];
+    necessaryFinalPoints = totalFinalPoints * necessaryFinalDecimal;
+    cout << letterGrades[i] << ": " << necessaryFinalPoints << "/" << finalPointsPossible << endl;
+   
+    if(necessaryFinalPoints < 0){
+        cout << "You can skip class!";
     }
+}
 }
