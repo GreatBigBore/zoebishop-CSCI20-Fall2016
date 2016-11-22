@@ -69,7 +69,7 @@ double finalGradeCalc::decimalToWeight(int eachCategory){
 double finalGradeCalc::totalWeightedGrade(){
     for(int i = 0; i < 3; ++i){
         double decimal = scoresToDecimals(assignPoints[i], totalCategoryPoints[i]);
-        double weightDecimal = decimalToWeight(i);
+        double weightDecimal = decimalToWeight(decimal);
         weightedGrade += weightDecimal;
     }
     return weightedGrade;
@@ -89,7 +89,7 @@ int main(){
 
     
     //Getting weights for each category
-    cout << "Please input the weights of the categories: Assignments, Quizzes/Tests, Other" << endl;
+    cout << "Please input the weights of the categories: Assignment, Quizz/Test, Other" << endl;
 for(int i = 0; i < 3; ++i){
     cin >> categoryWeights[i];
 }
