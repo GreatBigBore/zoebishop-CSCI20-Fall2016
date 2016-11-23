@@ -15,16 +15,14 @@ class finalGradeCalc{
     public:
     finalGradeCalc(double weights[3]);
     double letterGradeToDecimal(char letter);
-    double scoresToDecimals(int categoryPoints[], int totalCategoryPoints);
-    double totalWeightedGrade();
-    double decimalToWeight(int eachCategory);
+    double scoresToDecimals(double categoryPoints[], int totalCategoryPoints);
+    double totalWeightedGrade(double assignPoints,int totalCategoryPoints);
+    double decimalToWeight(int eachCategory, double decimal);
    
     private:
     double letterGradeDecimal[5];
     double weightValue[3];
     double weightedGrade;
-    int totalCategoryPoints[3];
-    int assignPoints[3][arraySize];
     double categoryWeights[3];
 };
 
@@ -53,7 +51,7 @@ double finalGradeCalc::letterGradeToDecimal(char letter){
 }
 
 //Calculates the weighted value of each assignment and the current grade in the class
-double finalGradeCalc::scoresToDecimals(int categoryPoints[], int totalCategoryPoints){
+double finalGradeCalc::scoresToDecimals(double categoryPoints[], int totalCategoryPoints){
    double decimalGrade = 0;
     for(int i = 0; i < arraySize; ++i){
         decimalGrade += categoryPoints[i];
@@ -62,14 +60,14 @@ double finalGradeCalc::scoresToDecimals(int categoryPoints[], int totalCategoryP
 }
 
 //Calculates required score on final for each letter grade using current weighted grade in class
-double finalGradeCalc::decimalToWeight(int eachCategory){
-    return weightValue[eachCategory] * categoryWeights[eachCategory];
+double finalGradeCalc::decimalToWeight(int eachCategory, double decimal){
+    return decimal * categoryWeights[eachCategory];
 }
 
-double finalGradeCalc::totalWeightedGrade(){
+double finalGradeCalc::totalWeightedGrade(double assignPoints,int totalCategoryPoints){
     for(int i = 0; i < 3; ++i){
-        double decimal = scoresToDecimals(assignPoints[i], totalCategoryPoints[i]);
-        double weightDecimal = decimalToWeight(decimal);
+        double decimal = scoresToDecimals(assignPoints, totalCategoryPoints);
+        double weightDecimal = decimalToWeight(i, decimal);
         weightedGrade += weightDecimal;
     }
     return weightedGrade;
@@ -81,7 +79,7 @@ int main(){
     char letterGrades[5] = {'A', 'B', 'C', 'D', 'F'};
     int totalCategoryPoints[3];
     int finalPointsPossible = 0;
-    int assignPoints[3][arraySize];
+    double assignPoints[3][arraySize];
     double weightedGrade = 0;
     double necessaryFinalDecimal = 0;
     double necessaryFinalPoints = 0;
@@ -89,7 +87,7 @@ int main(){
 
     
     //Getting weights for each category
-    cout << "Please input the weights of the categories: Assignment, Quizz/Test, Other" << endl;
+    cout << "Please input the weights of the categories: Assignment, Quiz/Test, Other" << endl;
 for(int i = 0; i < 3; ++i){
     cin >> categoryWeights[i];
 }
@@ -103,17 +101,19 @@ for(int i = 0; i < 3; ++i){
     cout << "How many total points were available in the " << categories[i] << " category?" << endl;
     cin >> totalCategoryPoints[i];
     cout << endl << "Enter the scores you got on each " << categories[i] << ". Enter -1 when done." << endl;
-    while(assignPoints[i][j] != -1){
-        cin >> assignPoints[i][j];
-        ++j;
-    }
+   do{
+    cin >> assignPoints[i][j]; 
+    ++j;
+   }
+    while(assignPoints[i][j-1] != -1);
+    userOne.scoresToDecimals(assignPoints[i], totalCategoryPoints[i]);
 }
 
     cout << "Input the total points possible for your final." << endl;
     cin >> finalPointsPossible;
     totalCategoryPoints[1] -= finalPointsPossible;
 
-    weightedGrade = userOne.totalWeightedGrade();
+    weightedGrade = userOne.totalWeightedGrade(assignPoints,totalCategoryPoints);
     
     cout << "Right now your grade is: " << weightedGrade << endl;
     cout << "Here is the minimum score you need on the final for each letter grade." << endl;
