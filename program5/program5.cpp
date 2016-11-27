@@ -106,7 +106,7 @@ for(int i = 0; i < 3; ++i){
 
     cout << "Input the total points possible for your final." << endl;
     cin >> finalPointsPossible;
-    totalCategoryPoints[1] -= finalPointsPossible;
+    totalCategoryPoints[2] -= finalPointsPossible;
 
     currentWeightedGrade = userOne.currentWeightedGrade(unweightedDecimal);
     
@@ -114,12 +114,14 @@ for(int i = 0; i < 3; ++i){
     cout << "Here is the minimum score you need on the final for each letter grade." << endl;
     
 for(int i = 0; i < 5; ++i){
-    necessaryFinalDecimal = (currentWeightedGrade - userOne.letterGradeToDecimal(letterGrades[i])) * categoryWeights[1];
+    necessaryFinalDecimal = (currentWeightedGrade - userOne.letterGradeToDecimal(letterGrades[i])) * categoryWeights[2];
     necessaryFinalPoints = finalPointsPossible * necessaryFinalDecimal;
-    cout << letterGrades[i] << ": " << necessaryFinalPoints << "/" << finalPointsPossible << endl;
-   
+           
     if(necessaryFinalPoints < 0){
-        cout << "You can skip class!";
+        cout << "You can skip class! ";
     }
+    
+    cout << letterGrades[i] << ": " << necessaryFinalPoints << "/" << finalPointsPossible << endl;
+
 }
 }
